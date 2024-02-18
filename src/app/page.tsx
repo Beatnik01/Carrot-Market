@@ -3,14 +3,14 @@ export default function Home() {
     <div className="bg-slate-400 py-20 px-24 grid gap-5 min-h-screen">
       <div className="bg-white p-6 rounded-3xl shadow-xl">
         <span className="font-semibold text-2xl">Select Item</span>
-        <div className="flex justify-between my-2">
-          <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
-        </div>
+        <ul>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="flex justify-between my-2 first:bg-blue-50">
+              <span className="text-gray-500">Grey Chair</span>
+              <span className="font-semibold">$19</span>
+            </div>
+          ))}
+        </ul>
         <div className="flex justify-between mt-2 pt-2 border-t-2 border-dashed">
           <span>Total</span>
           <span className="font-semibold">$10</span>
@@ -19,7 +19,7 @@ export default function Home() {
           Checkout
         </button>
       </div>
-      <div className="bg-white overflow-hidden rounded-2xl shadow-xl ">
+      <div className="bg-white overflow-hidden rounded-2xl shadow-xl group">
         <div className="bg-blue-500 p-6 pb-14">
           <span className="text-white text-2xl">Profile</span>
         </div>
@@ -29,7 +29,7 @@ export default function Home() {
               <span className="text-sm text-gray-500">Orders</span>
               <span className="font-medium">340</span>
             </div>
-            <div className="h-24 w-24 bg-red-400 rounded-full" />
+            <div className="h-24 w-24 bg-red-400 rounded-full group-hover:bg-blue-300" />
             <div className="flex flex-col items-center">
               <span className="text-sm text-gray-500">Spent</span>
               <span className="font-medium">$2,310</span>
@@ -55,9 +55,9 @@ export default function Home() {
           <span className="text-xs text-gray-500">Chair</span>
           <div className="flex justify-between items-center mt-3 mb-5">
             <div className="space-x-2">
-              <button className="w-5 h-5 rounded-full bg-yellow-500" />
-              <button className="w-5 h-5 rounded-full bg-indigo-500" />
-              <button className="w-5 h-5 rounded-full bg-teal-500" />
+              <button className="w-5 h-5 rounded-full bg-yellow-500 focus:ring-2 ring-offset-2 ring-yellow-500 transition" />
+              <button className="w-5 h-5 rounded-full bg-indigo-500 focus:ring-2 ring-offset-2 ring-indigo-500 transition" />
+              <button className="w-5 h-5 rounded-full bg-teal-500 focus:ring-2 ring-offset-2 ring-teal-500 transition" />
             </div>
             <div className="flex items-center space-x-4">
               <button className="bg-blue-100 flex justify-center items-center aspect-square w-9 text-xl text-gray-500 rounded-lg">
@@ -77,7 +77,27 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-white p-6 rounded-2xl shadow-xl"></div>
+      <div className="bg-white p-6 rounded-2xl shadow-xl">
+        <form className="flex flex-col space-y-2 p-5 focus-within:bg-blue-100">
+          <input
+            type="text"
+            required
+            placeholder="Username"
+            className="required:border-2 border-yellow-500 peer"
+          />
+          <span className="hidden peer-invalid:block peer-invalid:text-red-500">
+            This input is Invalid
+          </span>
+          <span className="hidden peer-valid:block peer-valid:text-teal-500">Awesome username</span>
+          <input type="submit" required value="Login" placeholder="Username" className="bg-white" />
+        </form>
+      </div>
+      <div className="bg-white p-6 rounded-2xl shadow-xl">
+        <details className="select-none">
+          <summary className="cursor-pointer">What is my fav. food?</summary>
+          <span className="">Kimchi</span>
+        </details>
+      </div>
     </div>
   );
 }
